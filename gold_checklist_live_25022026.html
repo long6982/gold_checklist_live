@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XAUUSD Gold Trading Checklist</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:      #080a0f;
+    --s1:      #0d1117;
+    --s2:      #141c26;
+    --gold:    #d4a843;
+    --gold2:   #f0c96a;
+    --gold3:   #fff1c0;
+    --green:   #22c55e;
+    --red:     #f43f5e;
+    --blue:    #38bdf8;
+    --purple:  #a78bfa;
+    --cyan:    #22d3ee;
+    --orange:  #fb923c;
+    --text:    #e8dcc8;
+    --muted:   #5a6070;
+    --border:  #1e2a35;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== BG TEXTURE ===== */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(212,168,67,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(212,168,67,0.04) 0%, transparent 50%);
+    pointer-events: none; z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.025) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .container {
+    position: relative; z-index: 1;
+    max-width: 1380px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    margin-bottom: 64px;
+    animation: fadeDown .8s ease;
+  }
+
+  .header-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: .8;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 700;
+    background: linear-gradient(135deg, #a07828 0%, var(--gold) 30%, var(--gold2) 60%, var(--gold3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+
+  .badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .badge-pill {
+    font-size: 10px;
+    font-family: 'Cinzel', serif;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    border: 1px solid;
+  }
+
+  .bp-gold   { color: var(--gold);   border-color: rgba(212,168,67,.4);  background: rgba(212,168,67,.08);  }
+  .bp-green  { color: var(--green);  border-color: rgba(34,197,94,.4);   background: rgba(34,197,94,.07);   }
+  .bp-red    { color: var(--red);    border-color: rgba(244,63,94,.4);   background: rgba(244,63,94,.07);   }
+  .bp-blue   { color: var(--blue);   border-color: rgba(56,189,248,.4);  background: rgba(56,189,248,.07);  }
+  .bp-purple { color: var(--purple); border-color: rgba(167,139,250,.4); background: rgba(167,139,250,.07); }
+  .bp-orange { color: var(--orange); border-color: rgba(251,146,60,.4);  background: rgba(251,146,60,.07);  }
+  .bp-cyan   { color: var(--cyan);   border-color: rgba(34,211,238,.4);  background: rgba(34,211,238,.07);  }
+
+  /* ===== SECTION TITLE ===== */
+  .sec-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sec-title::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(212,168,67,.4), transparent);
+  }
+
+  /* ===== MTF RIBBON ===== */
+  .mtf-ribbon {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .tf-card {
+    flex: 1; min-width: 110px;
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tf-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    transition: opacity .3s;
+  }
+
+  .tf-card.active, .tf-card:hover { border-color: var(--gold); }
+
+  .tf-card .tf-label {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold2);
+    margin-bottom: 4px;
+  }
+  .tf-card .tf-role  { font-size: 10px; color: var(--muted); letter-spacing: .5px; }
+  .tf-card .tf-score { font-size: 18px; font-weight: 700; margin-top: 8px; color: var(--text); }
+
+  .tf-D1  ::before { background: var(--purple); }
+  .tf-H4  ::before { background: var(--blue); }
+  .tf-H1  ::before { background: var(--cyan); }
+  .tf-M15 ::before { background: var(--gold); }
+  .tf-M5  ::before { background: var(--green); }
+
+  /* ===== CHECKLIST GRID ===== */
+  .cl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .cl-card {
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp .5s ease both;
+  }
+
+  .cl-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .cl-card.c-purple::before { background: linear-gradient(90deg, var(--purple), #7c3aed); }
+  .cl-card.c-blue::before   { background: linear-gradient(90deg, var(--blue),   #0ea5e9); }
+  .cl-card.c-cyan::before   { background: linear-gradient(90deg, var(--cyan),   #06b6d4); }
+  .cl-card.c-gold::before   { background: linear-gradient(90deg, var(--gold),   var(--gold2)); }
+  .cl-card.c-green::before  { background: linear-gradient(90deg, var(--green),  #16a34a); }
+  .cl-card.c-red::before    { background: linear-gradient(90deg, var(--red),    #be123c); }
+  .cl-card.c-orange::before { background: linear-gradient(90deg, var(--orange), #ea580c); }
+
+  .cl-card:nth-child(1) { animation-delay:.05s; }
+  .cl-card:nth-child(2) { animation-delay:.1s; }
+  .cl-card:nth-child(3) { animation-delay:.15s; }
+  .cl-card:nth-child(4) { animation-delay:.2s; }
+  .cl-card:nth-child(5) { animation-delay:.25s; }
+  .cl-card:nth-child(6) { animation-delay:.3s; }
+
+  .cl-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cl-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .cl-title    { font-family: 'Cinzel', serif; font-size: 12px; font-weight: 600; letter-spacing: .5px; }
+  .cl-subtitle { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  .cl-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .2s;
+    border-bottom: 1px solid rgba(255,255,255,.035);
+  }
+  .cl-item:last-of-type { border-bottom: none; }
+  .cl-item:hover { background: rgba(255,255,255,.03); }
+
+  .cl-box {
+    width: 17px; height: 17px;
+    border-radius: 4px;
+    border: 1.5px solid;
+    flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    transition: all .2s;
+  }
+
+  .cl-item.checked .cl-box::after { content: '✓'; }
+  .cl-item.checked .cl-text { opacity:.38; text-decoration: line-through; }
+
+  .cl-text  { font-size: 12px; color: #8a9bb0; line-height: 1.55; }
+  .cl-text strong { color: var(--text); font-weight: 600; }
+
+  .tag-must {
+    display: inline-block;
+    font-size: 8.5px; font-weight: 700;
+    padding: 2px 6px; border-radius: 3px;
+    margin-left: 5px; vertical-align: middle;
+    letter-spacing: .5px;
+    background: rgba(244,63,94,.2);
+    color: var(--red);
+    border: 1px solid rgba(244,63,94,.4);
+  }
+
+  .tag-tf {
+    display: inline-block;
+    font-size: 8.5px; font-weight: 700;
+    padding: 2px 6px; border-radius: 3px;
+    margin-left: 5px; vertical-align: middle;
+    background: rgba(56,189,248,.15);
+    color: var(--blue);
+    border: 1px solid rgba(56,189,248,.3);
+  }
+
+  /* ===== PROGRESS ===== */
+  .prog-wrap  { margin-top: 14px; }
+  .prog-bar   { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .prog-fill  { height: 100%; border-radius: 2px; transition: width .4s ease; width: 0%; }
+  .prog-label { font-size: 10px; color: var(--muted); text-align: right; margin-top: 5px; font-family: 'Cinzel', serif; }
+
+  .c-purple .prog-fill { background: linear-gradient(90deg, var(--purple), #c4b5fd); }
+  .c-blue   .prog-fill { background: linear-gradient(90deg, var(--blue),   #7dd3fc); }
+  .c-cyan   .prog-fill { background: linear-gradient(90deg, var(--cyan),   #67e8f9); }
+  .c-gold   .prog-fill { background: linear-gradient(90deg, var(--gold),   var(--gold2)); }
+  .c-green  .prog-fill { background: linear-gradient(90deg, var(--green),  #86efac); }
+  .c-red    .prog-fill { background: linear-gradient(90deg, var(--red),    #fda4af); }
+  .c-orange .prog-fill { background: linear-gradient(90deg, var(--orange), #fdba74); }
+
+  /* ===== AI ANALYSIS PANEL ===== */
+  .ai-section { margin-top: 48px; }
+
+  .ai-card {
+    background: linear-gradient(135deg, #0d1117, #111827);
+    border: 1px solid rgba(212,168,67,.25);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold2), var(--gold), transparent);
+  }
+
+  .ai-glow {
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,168,67,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ai-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .ai-icon-wrap {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, rgba(212,168,67,.2), rgba(212,168,67,.05));
+    border: 1px solid rgba(212,168,67,.3);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .ai-title-wrap .ai-title { font-family: 'Cinzel', serif; font-size: 15px; color: var(--gold2); font-weight: 600; }
+  .ai-title-wrap .ai-sub   { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  .upload-zone {
+    border: 2px dashed rgba(212,168,67,.25);
+    border-radius: 14px;
+    padding: 36px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+    background: rgba(212,168,67,.03);
+    position: relative;
+  }
+  .upload-zone:hover, .upload-zone.drag-over {
+    border-color: var(--gold);
+    background: rgba(212,168,67,.07);
+  }
+
+  .upload-zone input[type=file] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  }
+
+  .upload-icon  { font-size: 36px; margin-bottom: 12px; }
+  .upload-title { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold2); margin-bottom: 6px; }
+  .upload-hint  { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+  .symbol-selector {
+    display: flex; gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .sym-btn {
+    padding: 7px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--s2);
+    color: var(--muted);
+    font-size: 12px;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .5px;
+  }
+  .sym-btn:hover, .sym-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212,168,67,.1);
+  }
+
+  .tf-selector {
+    display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .tf-btn {
+    padding: 5px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--s2);
+    color: var(--muted);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .tf-btn:hover, .tf-btn.active {
+    border-color: var(--cyan); color: var(--cyan);
+    background: rgba(34,211,238,.1);
+  }
+
+  .analyze-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(212,168,67,.2), rgba(212,168,67,.08));
+    border: 1px solid rgba(212,168,67,.4);
+    border-radius: 12px;
+    color: var(--gold2);
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 20px;
+  }
+  .analyze-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(212,168,67,.35), rgba(212,168,67,.15));
+    border-color: var(--gold2);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(212,168,67,.15);
+  }
+  .analyze-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* Result area */
+  .result-box {
+    margin-top: 24px;
+    background: var(--s2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    display: none;
+    animation: fadeUp .4s ease;
+  }
+  .result-box.show { display: block; }
+
+  .result-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-title { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold2); }
+  .result-meta  { font-size: 10px; color: var(--muted); margin-left: auto; }
+
+  .result-content {
+    font-size: 13px;
+    color: #94a3b8;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  .result-content .r-section { color: var(--gold2); font-weight: 600; margin-top: 12px; }
+  .result-content .r-buy  { color: var(--green); }
+  .result-content .r-sell { color: var(--red); }
+  .result-content .r-warn { color: var(--orange); }
+
+  .loading-dots {
+    display: none;
+    align-items: center; gap: 6px;
+    color: var(--muted); font-size: 12px;
+    margin-top: 16px;
+  }
+  .loading-dots.show { display: flex; }
+  .loading-dots span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+    animation: blink 1.2s infinite;
+  }
+  .loading-dots span:nth-child(2) { animation-delay: .2s; }
+  .loading-dots span:nth-child(3) { animation-delay: .4s; }
+
+  @keyframes blink {
+    0%,80%,100% { opacity:.3; transform: scale(.8); }
+    40% { opacity:1; transform: scale(1.2); }
+  }
+
+  /* ===== SCORE DASHBOARD ===== */
+  .score-dash {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .score-item {
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .score-item .s-label { font-size: 9px; color: var(--muted); letter-spacing: 2px; font-family: 'Cinzel', serif; margin-bottom: 8px; text-transform: uppercase; }
+  .score-item .s-val   { font-size: 28px; font-weight: 700; font-family: 'Cinzel', serif; }
+  .score-item .s-sub   { font-size: 10px; color: var(--muted); margin-top: 4px; }
+
+  /* ===== WORKFLOW ===== */
+  .wf-steps {
+    display: flex; gap: 0; overflow-x: auto; padding-bottom: 8px;
+  }
+
+  .wf-step {
+    flex: 1; min-width: 130px;
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--border);
+    padding: 18px 14px;
+    text-align: center;
+    position: relative;
+  }
+
+  .wf-step:first-child  { border-radius: 12px 0 0 12px; }
+  .wf-step:last-child   { border-radius: 0 12px 12px 0; }
+
+  .wf-step::after {
+    content: '›';
+    position: absolute; right: -10px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px; color: var(--muted);
+    z-index: 2;
+  }
+  .wf-step:last-child::after { display: none; }
+
+  .wf-num   { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700; opacity: .1; }
+  .wf-icon  { font-size: 18px; margin: 4px 0; }
+  .wf-title { font-size: 10px; font-weight: 700; margin-bottom: 3px; font-family: 'Cinzel', serif; letter-spacing: .5px; }
+  .wf-tf    { font-size: 9px;  color: var(--muted); }
+  .wf-desc  { font-size: 10px; color: #64748b; margin-top: 6px; line-height: 1.4; }
+
+  .wf-step:nth-child(1) { border-top-color: var(--purple); }
+  .wf-step:nth-child(2) { border-top-color: var(--blue); }
+  .wf-step:nth-child(3) { border-top-color: var(--cyan); }
+  .wf-step:nth-child(4) { border-top-color: var(--gold); }
+  .wf-step:nth-child(5) { border-top-color: var(--green); }
+  .wf-step:nth-child(6) { border-top-color: var(--orange); }
+  .wf-step:nth-child(7) { border-top-color: var(--red); }
+
+  /* ===== MARKET CONTEXT BOX ===== */
+  .ctx-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .ctx-box {
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+
+  .ctx-title { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold); margin-bottom: 12px; letter-spacing: 1px; }
+  .ctx-row   { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 11.5px; }
+  .ctx-row:last-child { border-bottom: none; }
+  .ctx-key   { color: var(--muted); }
+  .ctx-val   { font-weight: 600; color: var(--text); }
+
+  /* ===== RESET BTN ===== */
+  .reset-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: 1.5px;
+    margin-top: 20px;
+  }
+  .reset-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeUp   { from { opacity:0; transform:translateY(18px);  } to { opacity:1; transform:translateY(0); } }
+
+  @media (max-width: 768px) {
+    .wf-steps { flex-direction: column; }
+    .wf-step  { border-radius: 8px !important; }
+    .wf-step::after { display: none; }
+    .mtf-ribbon { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Satoshi Logic Map System</div>
+    <h1>XAUUSD Gold Checklist</h1>
+    <div class="header-sub">Multi-Timeframe Analysis · M5 · M15 · H1 · H4 · D1 · AI Powered</div>
+    <div class="badges">
+      <span class="badge-pill bp-gold">ICHIMOKU + QML</span>
+      <span class="badge-pill bp-green">SATOSHI LOGIC MAP</span>
+      <span class="badge-pill bp-blue">MTF ANALYSIS</span>
+      <span class="badge-pill bp-purple">D1 → H4 → H1 → M15 → M5</span>
+      <span class="badge-pill bp-orange">AI AUTO-ANALYSIS</span>
+    </div>
+  </div>
+
+
+  <!-- LIVE DATA BANNER -->
+  <div style="background:linear-gradient(135deg,rgba(212,168,67,.12),rgba(212,168,67,.04));border:1px solid rgba(212,168,67,.35);border-radius:16px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;flex-shrink:0"></div>
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:11px;color:#f0c96a;font-weight:600;letter-spacing:1px">DU LIEU THUC DA LOAD — XAUUSD (5 TF)</div>
+        <div style="font-size:11px;color:#5a6070;margin-top:3px">D1 / H4 / H1 / M15 / M5 &middot; Cap nhat: <strong style="color:#e8dcc8">25/02/2026 09:35 VN</strong></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">GIA HIEN TAI</div>
+        <div style="font-size:22px;font-weight:700;font-family:'Cinzel',serif;color:#f0c96a">5,191.79</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">D1 TREND</div>
+        <div style="font-size:15px;font-weight:700;color:#22c55e">BULL &#x2191;</div>
+        <div style="font-size:9px;color:#5a6070">Tren Kumo D1</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">KEY LEVEL</div>
+        <div style="font-size:15px;font-weight:700;color:#fb923c">5,191.84</div>
+        <div style="font-size:9px;color:#5a6070">Dinh Kumo H1 &#x26A0;</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">H4 MACD</div>
+        <div style="font-size:15px;font-weight:700;color:#fbbf24">SHRINK</div>
+        <div style="font-size:9px;color:#5a6070">Pullback ket thuc</div>
+      </div>
+      <button onclick="autoFillFromLiveData()" style="background:linear-gradient(135deg,rgba(212,168,67,.25),rgba(212,168,67,.1));border:1px solid rgba(212,168,67,.5);color:#f0c96a;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;padding:10px 22px;border-radius:10px;cursor:pointer;transition:all .2s">
+        &#x26A1; TU DONG PHAN TICH
+      </button>
+    </div>
+  </div>
+
+  <!-- SCORE DASHBOARD -->
+  <div class="sec-title">Live Score Dashboard</div>
+  <div class="score-dash" id="scoreDash">
+    <div class="score-item">
+      <div class="s-label">D1 Trend · <span style="color:#f0c96a;font-size:9px">5191.30</span></div>
+      <div class="s-val" id="sc-d1" style="color:var(--muted)">—</div>
+      <div class="s-sub" id="sc-d1-lbl">Chưa check</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">H4 Bias · <span style="color:#f0c96a;font-size:9px">5191.17</span></div>
+      <div class="s-val" id="sc-h4" style="color:var(--muted)">—</div>
+      <div class="s-sub" id="sc-h4-lbl">Chưa check</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">H1 Setup · <span style="color:#fb923c;font-size:9px">INSIDE KUMO</span></div>
+      <div class="s-val" id="sc-h1" style="color:var(--muted)">—</div>
+      <div class="s-sub" id="sc-h1-lbl">Chưa check</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">QML Zone</div>
+      <div class="s-val" id="sc-qml" style="color:var(--muted)">—</div>
+      <div class="s-sub" id="sc-qml-lbl">Chưa check</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">Confluence</div>
+      <div class="s-val" id="sc-conf" style="color:var(--muted)">0</div>
+      <div class="s-sub">/ 30 tổng điểm</div>
+    </div>
+    <div class="score-item">
+      <div class="s-label">Quyết định</div>
+      <div class="s-val" id="sc-dec" style="color:var(--muted);font-size:18px">—</div>
+      <div class="s-sub" id="sc-dec-lbl">Chưa đủ dữ liệu</div>
+    </div>
+  </div>
+
+  <!-- MTF WORKFLOW -->
+  <div class="sec-title">Quy Trình MTF — Top Down Analysis</div>
+  <div class="wf-steps" style="margin-bottom:48px">
+    <div class="wf-step">
+      <div class="wf-num">01</div>
+      <div class="wf-icon">📊</div>
+      <div class="wf-title" style="color:var(--purple)">D1 BIAS</div>
+      <div class="wf-tf">Daily</div>
+      <div class="wf-desc">Kumo D1 — xu hướng lớn. SSA/SSB. Giá trên/dưới mây? Kijun vs 222 EMA</div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-num">02</div>
+      <div class="wf-icon">☁️</div>
+      <div class="wf-title" style="color:var(--blue)">H4 SETUP</div>
+      <div class="wf-tf">4-Hour</div>
+      <div class="wf-desc">QML 4H Extreme? Divergence? Mây H4 xác nhận? Kijun H4 hướng nào?</div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-num">03</div>
+      <div class="wf-icon">🔮</div>
+      <div class="wf-title" style="color:var(--cyan)">H1 TIMING</div>
+      <div class="wf-tf">1-Hour</div>
+      <div class="wf-desc">PL cắt TSL/MBL? VB cổ chai? RSI H1? Sóng N/V/E hình thành?</div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-num">04</div>
+      <div class="wf-icon">📐</div>
+      <div class="wf-title" style="color:var(--gold)">M15 ENTRY</div>
+      <div class="wf-tf">15-Min</div>
+      <div class="wf-desc">San Poh pullback. MACD 5-13-4. False breakout. Kijun M15 làm S/R</div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-num">05</div>
+      <div class="wf-icon">🎯</div>
+      <div class="wf-title" style="color:var(--green)">M5 TRIGGER</div>
+      <div class="wf-tf">5-Min</div>
+      <div class="wf-desc">Pin bar / Marubozu xác nhận. Stoploss rõ ràng. ORDER STOP LIMIT</div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-num">06</div>
+      <div class="wf-icon">💰</div>
+      <div class="wf-title" style="color:var(--orange)">TP / SL</div>
+      <div class="wf-tf">Management</div>
+      <div class="wf-desc">TP: Fibo N/V/E. SL: dưới 222 EMA. Trailing theo Kijun. PL vs MBL</div>
+    </div>
+    <div class="wf-step">
+      <div class="wf-num">07</div>
+      <div class="wf-icon">🚨</div>
+      <div class="wf-title" style="color:var(--red)">AVOID</div>
+      <div class="wf-tf">Filter</div>
+      <div class="wf-desc">NFP/CPI/FOMC? VB squeeze 50? News lớn? Spread cao? London/NY close?</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- LIVE DATA TABLE -->
+  <div style="background:#0d1117;border:1px solid #1e2a35;border-radius:14px;padding:20px 24px;margin-bottom:28px;overflow-x:auto">
+    <div style="font-family:'Cinzel',serif;font-size:10px;color:#d4a843;letter-spacing:3px;margin-bottom:16px">SNAPSHOT DU LIEU THUC — 25/02/2026 09:35</div>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead>
+        <tr style="border-bottom:1px solid #1e2a35">
+          <th style="padding:8px 12px;text-align:left;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">TF</th>
+          <th style="padding:8px 12px;text-align:right;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">CLOSE</th>
+          <th style="padding:8px 12px;text-align:center;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">vs KUMO</th>
+          <th style="padding:8px 12px;text-align:center;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">KUMO</th>
+          <th style="padding:8px 12px;text-align:left;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">KIJUN</th>
+          <th style="padding:8px 12px;text-align:right;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">MACD HIST</th>
+          <th style="padding:8px 12px;text-align:center;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">SIGNAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#bf80ff">D1</td>
+          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,191.30</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">TREN MAY</span></td>
+          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
+          <td style="padding:9px 12px;color:#22c55e;font-size:11px">TK&gt;KJ &#x2713;</td>
+          <td style="padding:9px 12px;text-align:right;color:#22c55e;font-weight:600">+9.40 &#x2191;</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 8px;border-radius:4px;font-size:10px">BULL STRONG</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#38bdf8">H4</td>
+          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,191.17</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">TREN MAY</span></td>
+          <td style="padding:9px 12px;text-align:center;color:#f43f5e;font-size:11px">&#x25CF; DO</td>
+          <td style="padding:9px 12px;color:#22c55e;font-size:11px">TK&gt;KJ &#x2713;</td>
+          <td style="padding:9px 12px;text-align:right;color:#fbbf24;font-weight:600">-5.66 &#x2197;</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px">PULLBACK END</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(251,146,60,.04)">
+          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#22d3ee">H1</td>
+          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,190.74</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,146,60,.15);color:#fb923c;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">&#x26A0; TRONG MAY</span></td>
+          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
+          <td style="padding:9px 12px;color:#22c55e;font-size:11px">TK&gt;KJ &#x2713;</td>
+          <td style="padding:9px 12px;text-align:right;color:#fbbf24;font-weight:600">+3.63 &#x2193;</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px">WAIT BREAKOUT</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
+          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#d4a843">M15</td>
+          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,190.80</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">TREN MAY</span></td>
+          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
+          <td style="padding:9px 12px;color:#f43f5e;font-size:11px">TK&lt;KJ &#x2717;</td>
+          <td style="padding:9px 12px;text-align:right;color:#fbbf24;font-weight:600">-1.26 &#x2197;</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px">BEAR SHRINK</span></td>
+        </tr>
+        <tr>
+          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#22c55e">M5</td>
+          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,191.79</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,146,60,.15);color:#fb923c;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">&#x26A0; TRONG MAY</span></td>
+          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
+          <td style="padding:9px 12px;color:#22c55e;font-size:11px">Close&gt;KJ &#x2713;</td>
+          <td style="padding:9px 12px;text-align:right;color:#22c55e;font-weight:600">+0.40 &#x2191;</td>
+          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 8px;border-radius:4px;font-size:10px">BULL FLIP</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:14px;padding:10px 14px;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:8px;font-size:12px;color:#fb923c;line-height:1.6">
+      <strong>&#x26A0; DIEM QUYET DINH:</strong> Gia dang test chinh xac dinh Kumo H1 = <strong>5,191.84</strong>. 
+      Dong cua H1 TREN 5,192 = BUY SIGNAL. Dong cua H1 DUOI 5,175 = SELL SHORT.
+      Hien tai CHUA VAO LENH — cho nen H1 tiep theo.
+    </div>
+  </div>
+
+  <!-- CHECKLIST CARDS -->
+
+  <div class="sec-title">Checklist Phân Tích — Click để tick</div>
+  <div class="cl-grid">
+
+    <!-- CARD 1: D1 Bias -->
+    <div class="cl-card c-purple">
+      <div class="cl-header">
+        <div class="cl-icon" style="background:rgba(167,139,250,.15)">📊</div>
+        <div>
+          <div class="cl-title" style="color:var(--purple)">D1 — XU HƯỚNG LỚN</div>
+          <div class="cl-subtitle">Bước 1 bắt buộc — Daily Trend Bias</div>
+        </div>
+      </div>
+
+      <div class="cl-item" onclick="tick(this,'d1')">
+        <div class="cl-box" style="border-color:var(--purple)"></div>
+        <div class="cl-text"><strong>Kumo D1 màu gì?</strong> Xanh = uptrend (chỉ Buy) / Đỏ = downtrend (chỉ Sell) <span class="tag-must">BẮT BUỘC</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'d1')">
+        <div class="cl-box" style="border-color:var(--purple)"></div>
+        <div class="cl-text"><strong>Giá vs Kumo D1</strong> — Trên mây (buy bias) / Dưới mây (sell bias) / Trong mây = không giao dịch</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'d1')">
+        <div class="cl-box" style="border-color:var(--purple)"></div>
+        <div class="cl-text"><strong>Kijun D1 vs 222 EMA</strong> — Kijun trên EMA = bullish / Kijun dưới EMA = bearish</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'d1')">
+        <div class="cl-box" style="border-color:var(--purple)"></div>
+        <div class="cl-text"><strong>Chikou D1 thông thoáng</strong> — Không bị cản bởi giá 26 nến trước? <span class="tag-tf">D1</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'d1')">
+        <div class="cl-box" style="border-color:var(--purple)"></div>
+        <div class="cl-text"><strong>Mây tương lai D1</strong> — Dày/mỏng/xoắn? Chuẩn bị breakout hay sideway?</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'d1')">
+        <div class="cl-box" style="border-color:var(--purple)"></div>
+        <div class="cl-text"><strong>SSA vs SSB D1</strong> — SSA &gt; SSB = Kumo tăng mạnh, tiếp tục bull</div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf-d1"></div></div>
+        <div class="prog-label" id="pl-d1">0 / 6</div>
+      </div>
+    </div>
+
+    <!-- CARD 2: H4 QML -->
+    <div class="cl-card c-blue">
+      <div class="cl-header">
+        <div class="cl-icon" style="background:rgba(56,189,248,.15)">🔮</div>
+        <div>
+          <div class="cl-title" style="color:var(--blue)">H4 — SATOSHI QML + KUMO</div>
+          <div class="cl-subtitle">Bước 2 — Tìm Extreme & Divergence</div>
+        </div>
+      </div>
+
+      <div class="cl-item" onclick="tick(this,'h4')">
+        <div class="cl-box" style="border-color:var(--blue)"></div>
+        <div class="cl-text"><strong>QML PL H4</strong> — Đang ở Buy zone (≤37) hay Sell zone (≥63)? <span class="tag-must">BẮT BUỘC</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h4')">
+        <div class="cl-box" style="border-color:var(--blue)"></div>
+        <div class="cl-text"><strong>MBL H4</strong> — Phẳng hoặc tăng (buy) / Phẳng hoặc giảm (sell). Không mua khi MBL &lt; 50</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h4')">
+        <div class="cl-box" style="border-color:var(--blue)"></div>
+        <div class="cl-text"><strong>VB H4 cổ chai</strong> — U.VB dưới 50 (buy signal) / U.VB trên 50 (sell signal)</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h4')">
+        <div class="cl-box" style="border-color:var(--blue)"></div>
+        <div class="cl-text"><strong>Phân kỳ H4</strong> — Type1: Giá LL / QML HL (buy) | Type1: Giá HH / QML LH (sell) <span class="tag-tf">4H→1H</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h4')">
+        <div class="cl-box" style="border-color:var(--blue)"></div>
+        <div class="cl-text"><strong>Kumo H4 xác nhận</strong> — Màu sắc phù hợp bias D1. Giá không nằm trong mây H4</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h4')">
+        <div class="cl-box" style="border-color:var(--blue)"></div>
+        <div class="cl-text"><strong>Trend Change H4</strong> — PL 4H cắt mức 50 cố định → đổi hướng, giữ lệnh đến Extreme</div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf-h4"></div></div>
+        <div class="prog-label" id="pl-h4">0 / 6</div>
+      </div>
+    </div>
+
+    <!-- CARD 3: H1 Timing -->
+    <div class="cl-card c-cyan">
+      <div class="cl-header">
+        <div class="cl-icon" style="background:rgba(34,211,238,.15)">⏱️</div>
+        <div>
+          <div class="cl-title" style="color:var(--cyan)">H1 — TIMING + WAVE STRUCTURE</div>
+          <div class="cl-subtitle">Bước 3 — Xác định Entry Window</div>
+        </div>
+      </div>
+
+      <div class="cl-item" onclick="tick(this,'h1')">
+        <div class="cl-box" style="border-color:var(--cyan)"></div>
+        <div class="cl-text"><strong>QML H1</strong> — PL ≤ 37 + PL cắt TSL trên MBL → Buy entry window <span class="tag-must">BẮT BUỘC</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h1')">
+        <div class="cl-box" style="border-color:var(--cyan)"></div>
+        <div class="cl-text"><strong>Góc PL H1</strong> — Hướng về 12:30–2:00 (buy) hoặc 4:00–5:30 (sell)</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h1')">
+        <div class="cl-box" style="border-color:var(--cyan)"></div>
+        <div class="cl-text"><strong>Sóng Ichimoku H1</strong> — Sóng N (tiếp diễn mạnh) / Sóng P,Y,S (suy yếu/đảo chiều)?</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h1')">
+        <div class="cl-box" style="border-color:var(--cyan)"></div>
+        <div class="cl-text"><strong>VKV H1</strong> — Entry N tại 50% Fibo của sóng lớn trước. MM đang Run for Profit?</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h1')">
+        <div class="cl-box" style="border-color:var(--cyan)"></div>
+        <div class="cl-text"><strong>Kijun H1</strong> — Đường giá pullback về Kijun H1 làm support (buy) / resistance (sell)</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'h1')">
+        <div class="cl-box" style="border-color:var(--cyan)"></div>
+        <div class="cl-text"><strong>RSI H1</strong> — Không overbought (buy) / Không oversold (sell). Phân kỳ RSI H1 nếu có</div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf-h1"></div></div>
+        <div class="prog-label" id="pl-h1">0 / 6</div>
+      </div>
+    </div>
+
+    <!-- CARD 4: M15 Entry -->
+    <div class="cl-card c-gold">
+      <div class="cl-header">
+        <div class="cl-icon" style="background:rgba(212,168,67,.15)">📐</div>
+        <div>
+          <div class="cl-title" style="color:var(--gold2)">M15 — ENTRY CONFIRMATION</div>
+          <div class="cl-subtitle">Bước 4 — Xác nhận Entry chính xác</div>
+        </div>
+      </div>
+
+      <div class="cl-item" onclick="tick(this,'m15')">
+        <div class="cl-box" style="border-color:var(--gold)"></div>
+        <div class="cl-text"><strong>San Poh M15</strong> — Pullback nhỏ trong sóng SanKu. Giá hồi về Kijun/EMA rồi bounce <span class="tag-must">BẮT BUỘC</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m15')">
+        <div class="cl-box" style="border-color:var(--gold)"></div>
+        <div class="cl-text"><strong>MACD M15 (5-13-4)</strong> — Histogram co lại + sắp cắt signal line cùng hướng</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m15')">
+        <div class="cl-box" style="border-color:var(--gold)"></div>
+        <div class="cl-text"><strong>False Breakout M15</strong> — Giá fakeout dưới S/R rồi đóng cửa ngược lại → Cực mạnh</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m15')">
+        <div class="cl-box" style="border-color:var(--gold)"></div>
+        <div class="cl-text"><strong>HHLL M15</strong> — Cấu trúc HH+HL (buy) / LL+LH (sell) đang hình thành trên M15</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m15')">
+        <div class="cl-box" style="border-color:var(--gold)"></div>
+        <div class="cl-text"><strong>Kijun M15 làm S/R</strong> — Giá test Kijun M15 lần đầu thường bounce mạnh</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m15')">
+        <div class="cl-box" style="border-color:var(--gold)"></div>
+        <div class="cl-text"><strong>SL xác định</strong> — Dưới swing low (buy) / Trên swing high (sell). Rõ ràng trước khi bấm</div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf-m15"></div></div>
+        <div class="prog-label" id="pl-m15">0 / 6</div>
+      </div>
+    </div>
+
+    <!-- CARD 5: M5 Trigger -->
+    <div class="cl-card c-green">
+      <div class="cl-header">
+        <div class="cl-icon" style="background:rgba(34,197,94,.15)">🎯</div>
+        <div>
+          <div class="cl-title" style="color:var(--green)">M5 — TRIGGER + MANAGEMENT</div>
+          <div class="cl-subtitle">Bước 5 — Vào lệnh & Quản lý</div>
+        </div>
+      </div>
+
+      <div class="cl-item" onclick="tick(this,'m5')">
+        <div class="cl-box" style="border-color:var(--green)"></div>
+        <div class="cl-text"><strong>Pin Bar / Hammer M5</strong> tại vùng đã xác định (Kijun/Kumo/QML zone) <span class="tag-must">BẮT BUỘC</span></div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m5')">
+        <div class="cl-box" style="border-color:var(--green)"></div>
+        <div class="cl-text"><strong>Marubozu M5</strong> — Nến thân dài không bóng = SanSen/SanZan xác nhận momentum</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m5')">
+        <div class="cl-box" style="border-color:var(--green)"></div>
+        <div class="cl-text"><strong>Volume Spike M5</strong> — Vol tăng đột biến tại điểm entry = Whale vào lệnh (Vol = Động lượng)</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m5')">
+        <div class="cl-box" style="border-color:var(--green)"></div>
+        <div class="cl-text"><strong>ORDER STOP LIMIT</strong> — Đặt lệnh chờ tại breakout point, không vào market order</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m5')">
+        <div class="cl-box" style="border-color:var(--green)"></div>
+        <div class="cl-text"><strong>TP Fibo</strong> — N: 23.6% | V: 50% | E: 76.4% | Extension: 1.236%. TP = Point Mutation</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'m5')">
+        <div class="cl-box" style="border-color:var(--green)"></div>
+        <div class="cl-text"><strong>Trailing Kijun</strong> — Dời SL theo Kijun khi giá đi 1 sóng N. Thoát khi PL vào VB + MBL gần</div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf-m5"></div></div>
+        <div class="prog-label" id="pl-m5">0 / 6</div>
+      </div>
+    </div>
+
+    <!-- CARD 6: Avoid / Filter -->
+    <div class="cl-card c-red">
+      <div class="cl-header">
+        <div class="cl-icon" style="background:rgba(244,63,94,.15)">🚫</div>
+        <div>
+          <div class="cl-title" style="color:var(--red)">AVOID — BỘ LỌC VÀNG</div>
+          <div class="cl-subtitle">Nếu bất kỳ điều nào đúng → Không vào lệnh</div>
+        </div>
+      </div>
+
+      <div class="cl-item" onclick="tick(this,'avoid')">
+        <div class="cl-box" style="border-color:var(--red)"></div>
+        <div class="cl-text"><strong>Tin tức lớn trong 2h</strong> — NFP (Thứ 6 đầu tháng), CPI, FOMC, GDP Mỹ = Spread tăng mạnh</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'avoid')">
+        <div class="cl-box" style="border-color:var(--red)"></div>
+        <div class="cl-text"><strong>VB QML squeeze tại 50</strong> — Thường khi có tin tức hoặc thị trường đang tích lũy không rõ hướng</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'avoid')">
+        <div class="cl-box" style="border-color:var(--red)"></div>
+        <div class="cl-text"><strong>Giá trong Kumo D1/H4</strong> — Không có edge rõ ràng, tránh giao dịch trong mây</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'avoid')">
+        <div class="cl-box" style="border-color:var(--red)"></div>
+        <div class="cl-text"><strong>London Close (19:00–20:00 VN) / NY Close (4:00–5:00 VN)</strong> — Spread rộng, liquidity thấp</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'avoid')">
+        <div class="cl-box" style="border-color:var(--red)"></div>
+        <div class="cl-text"><strong>DXY ngược chiều mạnh</strong> — Dollar Index tăng mạnh = Gold giảm. Luôn check DXY trước</div>
+      </div>
+      <div class="cl-item" onclick="tick(this,'avoid')">
+        <div class="cl-box" style="border-color:var(--red)"></div>
+        <div class="cl-text"><strong>Bias D1 ↔ QML H4 mâu thuẫn</strong> — Kumo D1 bullish nhưng QML H4 ở Selling zone = không vào</div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="pf-avoid"></div></div>
+        <div class="prog-label" id="pl-avoid">0 / 6</div>
+      </div>
+    </div>
+
+  </div><!-- end cl-grid -->
+
+  <div style="text-align:center">
+    <button class="reset-btn" onclick="resetAll()">↺ RESET ALL CHECKBOXES</button>
+  </div>
+
+  <hr class="divider">
+
+  <!-- MARKET CONTEXT -->
+  <div class="sec-title">Context Thị Trường Vàng</div>
+  <div class="ctx-grid">
+    <div class="ctx-box">
+      <div class="ctx-title">⏰ PHIÊN GIAO DỊCH VÀNG</div>
+      <div class="ctx-row"><span class="ctx-key">Tokyo (cao su)</span>    <span class="ctx-val">6:00 – 14:00 VN</span></div>
+      <div class="ctx-row"><span class="ctx-key">London (quan trọng)</span><span class="ctx-val" style="color:var(--gold)">14:00 – 22:00 VN</span></div>
+      <div class="ctx-row"><span class="ctx-key">New York (quan trọng)</span><span class="ctx-val" style="color:var(--gold)">19:30 – 03:00 VN</span></div>
+      <div class="ctx-row"><span class="ctx-key">London-NY Overlap</span>  <span class="ctx-val" style="color:var(--green)">19:30 – 22:00 VN ★</span></div>
+      <div class="ctx-row"><span class="ctx-key">Tránh giao dịch</span>   <span class="ctx-val" style="color:var(--red)">04:00–06:00 VN</span></div>
+    </div>
+    <div class="ctx-box">
+      <div class="ctx-title">📅 TIN TỨC CẦN TRÁNH (US)</div>
+      <div class="ctx-row"><span class="ctx-key">NFP</span>        <span class="ctx-val">Thứ 6 đầu tháng — 19:30 VN</span></div>
+      <div class="ctx-row"><span class="ctx-key">CPI</span>        <span class="ctx-val">Giữa tháng — 19:30 VN</span></div>
+      <div class="ctx-row"><span class="ctx-key">FOMC</span>       <span class="ctx-val">8x/năm — 01:00 VN</span></div>
+      <div class="ctx-row"><span class="ctx-key">Fed Chair Speech</span><span class="ctx-val">Không cố định</span></div>
+      <div class="ctx-row"><span class="ctx-key">GDP / PCE</span>  <span class="ctx-val">Cuối tháng — 19:30 VN</span></div>
+    </div>
+    <div class="ctx-box">
+      <div class="ctx-title">🔗 TƯƠNG QUAN VÀO VÀNG</div>
+      <div class="ctx-row"><span class="ctx-key">DXY tăng</span>      <span class="ctx-val" style="color:var(--red)">↓ Vàng giảm</span></div>
+      <div class="ctx-row"><span class="ctx-key">DXY giảm</span>      <span class="ctx-val" style="color:var(--green)">↑ Vàng tăng</span></div>
+      <div class="ctx-row"><span class="ctx-key">Real Yield tăng</span><span class="ctx-val" style="color:var(--red)">↓ Vàng giảm</span></div>
+      <div class="ctx-row"><span class="ctx-key">Risk Off / War</span><span class="ctx-val" style="color:var(--green)">↑ Safe haven</span></div>
+      <div class="ctx-row"><span class="ctx-key">BTC Crash</span>     <span class="ctx-val" style="color:var(--gold)">↑ Thường tăng</span></div>
+    </div>
+    <div class="ctx-box">
+      <div class="ctx-title">📏 RULER MINDSET — VÀNG</div>
+      <div class="ctx-row"><span class="ctx-key">Vol = Whale</span>   <span class="ctx-val">Central Banks mua vàng</span></div>
+      <div class="ctx-row"><span class="ctx-key">NSPN</span>          <span class="ctx-val">Pullback = Tiếp diễn sóng</span></div>
+      <div class="ctx-row"><span class="ctx-key">NPYSN</span>         <span class="ctx-val">Sóng P,Y,S = Đảo chiều</span></div>
+      <div class="ctx-row"><span class="ctx-key">SMS</span>           <span class="ctx-val">No HH/LL = Xu hướng yếu</span></div>
+      <div class="ctx-row"><span class="ctx-key">Below/Above Cloud</span><span class="ctx-val">Rule #1 không phá vỡ</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- AI ANALYSIS SECTION -->
+  <div class="ai-section">
+    <div class="sec-title">AI Auto-Analysis — Claude Powered</div>
+
+    <div class="ai-card">
+      <div class="ai-glow"></div>
+
+      <div class="ai-header">
+        <div class="ai-icon-wrap">🤖</div>
+        <div class="ai-title-wrap">
+          <div class="ai-title">PHÂN TÍCH TỰ ĐỘNG VỚI AI</div>
+          <div class="ai-sub">Export CSV từ TradingView → Upload → Claude AI tự chấm checklist & đưa ra quyết định</div>
+        </div>
+      </div>
+
+      <!-- Symbol selector -->
+      <div style="margin-bottom:14px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:2px">CHỌN MÃ</div>
+        <div class="symbol-selector">
+          <button class="sym-btn active" onclick="selectSym(this,'XAUUSD')">XAUUSD</button>
+          <button class="sym-btn" onclick="selectSym(this,'XAGUSD')">XAGUSD</button>
+          <button class="sym-btn" onclick="selectSym(this,'EURUSD')">EURUSD</button>
+          <button class="sym-btn" onclick="selectSym(this,'CUSTOM')">Custom...</button>
+        </div>
+      </div>
+
+      <!-- TF selector -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:8px;letter-spacing:2px">KHUNG GIỜ PHÂN TÍCH CHÍNH</div>
+        <div class="tf-selector">
+          <button class="tf-btn" onclick="selectTF(this,'D1')">D1</button>
+          <button class="tf-btn" onclick="selectTF(this,'H4')">H4</button>
+          <button class="tf-btn active" onclick="selectTF(this,'H1')">H1</button>
+          <button class="tf-btn" onclick="selectTF(this,'M15')">M15</button>
+          <button class="tf-btn" onclick="selectTF(this,'M5')">M5</button>
+        </div>
+      </div>
+
+      <!-- Upload zone -->
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" accept=".csv,.txt" id="csvFile" onchange="handleFile(event)">
+        <div class="upload-icon">📂</div>
+        <div class="upload-title">Kéo thả hoặc click để upload CSV từ TradingView</div>
+        <div class="upload-hint">
+          TradingView → Chuột phải chart → "Export chart data" → Lưu CSV<br>
+          Nên bao gồm: OHLCV + Ichimoku (9-26-52) + RSI(14) + MACD
+        </div>
+      </div>
+
+      <!-- File info -->
+      <div id="fileInfo" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);border-radius:8px;font-size:12px;color:var(--green)">
+        ✓ File đã load: <strong id="fileName"></strong> — <span id="fileRows"></span> dòng dữ liệu
+      </div>
+
+      <!-- Manual input fallback -->
+      <div style="margin-top:20px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:2px">HOẶC NHẬP THỦ CÔNG (nếu không có CSV)</div>
+        <textarea id="manualInput" placeholder="Dán dữ liệu hoặc mô tả tình huống thị trường vàng hiện tại vào đây...&#10;&#10;Ví dụ:&#10;- XAUUSD giá hiện tại: 2340&#10;- Kumo D1: màu xanh, giá trên mây&#10;- QML H4: PL ở 35, MBL ở 38, VB cổ chai&#10;- RSI H1: 48, đang pullback&#10;- M15: San Poh pullback về Kijun&#10;..." style="width:100%;height:120px;background:var(--s2);border:1px solid var(--border);border-radius:10px;padding:14px;color:var(--text);font-size:12px;font-family:'DM Sans',sans-serif;resize:vertical;outline:none;line-height:1.6"></textarea>
+      </div>
+
+      <button class="analyze-btn" id="analyzeBtn" onclick="runAnalysis()">
+        ✦ PHÂN TÍCH VỚI AI CLAUDE ✦
+      </button>
+
+      <div class="loading-dots" id="loadingDots">
+        <span></span><span></span><span></span>
+        <span style="margin-left:4px;font-size:12px">Claude đang phân tích...</span>
+      </div>
+
+      <div class="result-box" id="resultBox">
+        <div class="result-header">
+          <span style="font-size:18px">✦</span>
+          <span class="result-title">KẾT QUẢ PHÂN TÍCH AI</span>
+          <span class="result-meta" id="resultMeta"></span>
+        </div>
+        <div class="result-content" id="resultContent"></div>
+      </div>
+
+    </div><!-- ai-card -->
+  </div><!-- ai-section -->
+
+</div><!-- container -->
+
+<script>
+// ===== LIVE DATA FROM CSV (Auto-injected 25/02/2026 09:35 VN) =====
+const LIVE = {
+  D1:  { time:'2026-02-24 22:00', close:5191.30, open:5135.50, high:5210.68, low:5128.29,
+          tk:5046.30, kj:5002.30, ssa:4625.40, ssb:4433.49,
+          kumo_top:4625.40, kumo_bot:4433.49, kumo_bull:true, vs_kumo:'above', kumo_w:3.7,
+          tk_above_kj:true, close_above_kj:true,
+          macd:101.58, sig:92.18, hist:9.40, hist_p:4.01, macd_bull:true, macd_exp:true,
+          t5:true, t20:false },
+  H4:  { time:'2026-02-25 06:00', close:5191.17, open:5201.72, high:5201.73, low:5176.64,
+          tk:5171.62, kj:5106.73, ssa:4938.56, ssb:4980.97,
+          kumo_top:4980.97, kumo_bot:4938.56, kumo_bull:false, vs_kumo:'above', kumo_w:0.8,
+          tk_above_kj:true, close_above_kj:true,
+          macd:44.15, sig:49.81, hist:-5.66, hist_p:-6.68, macd_bull:false, macd_exp:false,
+          t5:true, t20:true },
+  H1:  { time:'2026-02-25 09:00', close:5190.74, open:5185.47, high:5193.82, low:5176.64,
+          tk:5177.43, kj:5151.95, ssa:5191.84, ssb:5115.84,
+          kumo_top:5191.84, kumo_bot:5115.84, kumo_bull:true, vs_kumo:'inside', kumo_w:1.5,
+          tk_above_kj:true, close_above_kj:true,
+          macd:7.35, sig:3.72, hist:3.63, hist_p:4.50, macd_bull:true, macd_exp:false,
+          t5:false, t20:true },
+  M15: { time:'2026-02-25 09:30', close:5190.80, open:5186.76, high:5193.82, low:5185.86,
+          tk:5186.95, kj:5191.25, ssa:5170.61, ssb:5143.53,
+          kumo_top:5170.61, kumo_bot:5143.53, kumo_bull:true, vs_kumo:'above', kumo_w:0.5,
+          tk_above_kj:false, close_above_kj:false,
+          macd:2.51, sig:3.77, hist:-1.26, hist_p:-1.71, macd_bull:false, macd_exp:false,
+          t5:false, t20:true },
+  M5:  { time:'2026-02-25 09:35', close:5191.79, open:5189.47, high:5193.82, low:5189.26,
+          tk:5185.23, kj:5186.95, ssa:5192.58, ssb:5191.25,
+          kumo_top:5192.58, kumo_bot:5191.25, kumo_bull:true, vs_kumo:'inside', kumo_w:0.03,
+          tk_above_kj:false, close_above_kj:true,
+          macd:-0.44, sig:-0.84, hist:0.40, hist_p:-0.11, macd_bull:true, macd_exp:true,
+          t5:true, t20:true }
+};
+
+// ===== STATE =====
+const state = {
+  checks: { d1:0, h4:0, h1:0, m15:0, m5:0, avoid:0 },
+  totals: { d1:6, h4:6, h1:6, m15:6, m5:6, avoid:6 },
+  symbol: 'XAUUSD',
+  tf: 'H1',
+  csvData: null
+};
+
+// ===== TICK =====
+function tick(el, card) {
+  el.classList.toggle('checked');
+  updateCard(card);
+  updateScores();
+}
+
+function updateCard(card) {
+  const all     = document.querySelectorAll(`[onclick="tick(this,'${card}')"]`);
+  const checked = document.querySelectorAll(`[onclick="tick(this,'${card}')"].checked`).length;
+  const total   = all.length;
+  const pct     = (checked / total) * 100;
+  document.getElementById(`pf-${card}`).style.width = pct + '%';
+  document.getElementById(`pl-${card}`).textContent = `${checked} / ${total}`;
+  state.checks[card] = checked;
+}
+
+// ===== SCORE DASHBOARD =====
+function updateScores() {
+  const { d1, h4, h1, m15, m5, avoid } = state.checks;
+  const totalChecked = d1 + h4 + h1 + m15 + m5;
+
+  // D1 score
+  const d1el = document.getElementById('sc-d1');
+  d1el.textContent = d1 >= 4 ? '✓' : d1 >= 2 ? '~' : '✗';
+  d1el.style.color = d1 >= 4 ? 'var(--green)' : d1 >= 2 ? 'var(--gold)' : 'var(--red)';
+  document.getElementById('sc-d1-lbl').textContent = d1 >= 4 ? 'Trend rõ ràng' : d1 >= 2 ? 'Cần thêm xác nhận' : 'Không rõ trend';
+
+  // H4 score
+  const h4el = document.getElementById('sc-h4');
+  h4el.textContent = h4 >= 4 ? '✓' : h4 >= 2 ? '~' : '✗';
+  h4el.style.color = h4 >= 4 ? 'var(--green)' : h4 >= 2 ? 'var(--gold)' : 'var(--red)';
+  document.getElementById('sc-h4-lbl').textContent = h4 >= 4 ? 'QML setup tốt' : 'Chờ thêm tín hiệu';
+
+  // H1 score
+  const h1el = document.getElementById('sc-h1');
+  h1el.textContent = h1 >= 4 ? '✓' : h1 >= 2 ? '~' : '✗';
+  h1el.style.color = h1 >= 4 ? 'var(--green)' : h1 >= 2 ? 'var(--gold)' : 'var(--red)';
+  document.getElementById('sc-h1-lbl').textContent = h1 >= 4 ? 'Timing tốt' : 'Chưa có window';
+
+  // QML
+  const qml = Math.max(h4, h1);
+  const qmlEl = document.getElementById('sc-qml');
+  qmlEl.textContent = qml >= 5 ? 'BUY/SELL' : qml >= 3 ? 'WAIT' : 'NEUTRAL';
+  qmlEl.style.color = qml >= 5 ? 'var(--green)' : qml >= 3 ? 'var(--gold)' : 'var(--muted)';
+  qmlEl.style.fontSize = '14px';
+  document.getElementById('sc-qml-lbl').textContent = qml >= 5 ? 'Zone xác nhận' : 'Cần thêm điều kiện';
+
+  // Confluence
+  document.getElementById('sc-conf').textContent = totalChecked;
+  document.getElementById('sc-conf').style.color = totalChecked >= 20 ? 'var(--green)' : totalChecked >= 12 ? 'var(--gold)' : 'var(--muted)';
+
+  // Decision
+  const decEl = document.getElementById('sc-dec');
+  const decLbl = document.getElementById('sc-dec-lbl');
+  const hasAvoid = avoid >= 2;
+
+  if (hasAvoid) {
+    decEl.textContent = '🚫'; decEl.style.color = 'var(--red)';
+    decLbl.textContent = 'Có cảnh báo → Né';
+  } else if (totalChecked >= 22 && d1 >= 4 && h4 >= 4) {
+    decEl.textContent = 'TRADE'; decEl.style.color = 'var(--green)';
+    decLbl.textContent = 'Confluence cao ✓';
+  } else if (totalChecked >= 15) {
+    decEl.textContent = 'WAIT'; decEl.style.color = 'var(--gold)';
+    decLbl.textContent = 'Cần thêm xác nhận';
+  } else {
+    decEl.textContent = 'SKIP'; decEl.style.color = 'var(--muted)';
+    decLbl.textContent = 'Chưa đủ điều kiện';
+  }
+}
+
+// ===== RESET =====
+function resetAll() {
+  document.querySelectorAll('.cl-item').forEach(el => el.classList.remove('checked'));
+  ['d1','h4','h1','m15','m5','avoid'].forEach(c => {
+    state.checks[c] = 0;
+    updateCard(c);
+  });
+  updateScores();
+}
+
+// ===== AUTO-FILL FROM LIVE DATA =====
+function autoFillFromLiveData() {
+  const d = LIVE;
+  const d1Items  = [d.D1.kumo_bull, d.D1.vs_kumo==='above', d.D1.close_above_kj, d.D1.t20, d.D1.kumo_w<8, d.D1.ssa>d.D1.ssb];
+  const h4Items  = [true, d.H4.macd_bull||!d.H4.macd_exp, !d.H4.macd_exp, !d.H4.macd_bull&&!d.H4.macd_exp, d.H4.vs_kumo==='above', d.H4.hist>d.H4.hist_p];
+  const h1Items  = [d.H1.macd_bull, d.H1.hist>0, d.H1.t20, d.H1.close_above_kj, d.H1.close_above_kj, d.H1.macd>d.H1.sig];
+  const m15Items = [d.M15.vs_kumo==='above', d.M15.hist>d.M15.hist_p, false, d.M15.t20, d.M15.vs_kumo!=='below', false];
+  const m5Items  = [false, false, d.M5.macd_exp&&d.M5.macd_bull, false, d.M5.t20, false];
+  const avoidItems = [false, d.M5.kumo_w<0.05, d.H1.vs_kumo==='inside', false, false, false];
+
+  document.querySelectorAll('.cl-item').forEach(el => el.classList.remove('checked'));
+  [
+    {items:d1Items,  card:'d1'},
+    {items:h4Items,  card:'h4'},
+    {items:h1Items,  card:'h1'},
+    {items:m15Items, card:'m15'},
+    {items:m5Items,  card:'m5'},
+    {items:avoidItems,card:'avoid'},
+  ].forEach(({items, card}) => {
+    const els = document.querySelectorAll(`[onclick="tick(this,'${card}')"]`);
+    items.forEach((should, i) => { if(should && els[i]) els[i].classList.add('checked'); });
+    updateCard(card);
+  });
+  updateScores();
+}
+
+// ===== SYMBOL / TF =====
+function selectSym(el, sym) {
+  document.querySelectorAll('.sym-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  state.symbol = sym;
+}
+
+function selectTF(el, tf) {
+  document.querySelectorAll('.tf-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  state.tf = tf;
+}
+
+// ===== FILE UPLOAD =====
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    state.csvData = ev.target.result;
+    const rows = ev.target.result.split('\n').length;
+    document.getElementById('fileInfo').style.display = 'block';
+    document.getElementById('fileName').textContent = file.name;
+    document.getElementById('fileRows').textContent = `${rows} dòng`;
+    document.getElementById('uploadZone').style.borderColor = 'var(--green)';
+  };
+  reader.readAsText(file);
+}
+
+// Drag & drop
+const uz = document.getElementById('uploadZone');
+uz.addEventListener('dragover', e => { e.preventDefault(); uz.classList.add('drag-over'); });
+uz.addEventListener('dragleave', () => uz.classList.remove('drag-over'));
+uz.addEventListener('drop', e => {
+  e.preventDefault(); uz.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    const fakeEvent = { target: { files: [file] } };
+    handleFile(fakeEvent);
+  }
+});
+
+// ===== AI ANALYSIS =====
+async function runAnalysis() {
+  const btn = document.getElementById('analyzeBtn');
+  const dots = document.getElementById('loadingDots');
+  const resultBox = document.getElementById('resultBox');
+  const resultContent = document.getElementById('resultContent');
+  const manualInput = document.getElementById('manualInput').value.trim();
+
+  if (!state.csvData && !manualInput) {
+    alert('Vui lòng upload file CSV từ TradingView hoặc nhập dữ liệu thủ công!');
+    return;
+  }
+
+  btn.disabled = true;
+  dots.classList.add('show');
+  resultBox.classList.remove('show');
+
+  // Build checklist summary
+  const { d1, h4, h1, m15, m5, avoid } = state.checks;
+  const checklistSummary = `
+Tổng kết checklist:
+- D1 Trend: ${d1}/6 ✓
+- H4 QML: ${h4}/6 ✓  
+- H1 Timing: ${h1}/6 ✓
+- M15 Entry: ${m15}/6 ✓
+- M5 Trigger: ${m5}/6 ✓
+- Avoid signals: ${avoid}/6 ⚠️
+`;
+
+  // Build prompt
+  const dataSection = state.csvData
+    ? `\n\nDỮ LIỆU CSV (${state.csvData.split('\n').length} dòng):\n${state.csvData.slice(0, 3000)}`
+    : '';
+
+  const manualSection = manualInput
+    ? `\n\nMÔ TẢ THỦ CÔNG:\n${manualInput}`
+    : '';
+
+  const prompt = `Bạn là chuyên gia trading vàng (XAUUSD) theo hệ thống Satoshi Ichimoku Logic Map. Hãy phân tích tình huống giao dịch sau và đưa ra quyết định rõ ràng.
+
+MÃ: ${state.symbol} | KHUNG GIỜ CHÍNH: ${state.tf}
+
+${checklistSummary}
+${dataSection}
+${manualSection}
+
+Hãy phân tích và trả lời theo format sau (bằng tiếng Việt):
+
+📊 BIAS D1: [Bullish/Bearish/Neutral] — [lý do ngắn]
+🔮 QML STATUS: [Buy Zone/Sell Zone/Neutral] — [mức PL, MBL, VB]
+⏱️ TIMING: [Good/Wait/Skip] — [lý do]
+🎯 QUYẾT ĐỊNH: [LONG / SHORT / CHỜ / KHÔNG VÀO]
+💰 ENTRY: [giá vùng entry nếu có]
+🛡️ SL: [vị trí stoploss]
+🏁 TP: [mục tiêu 1 / mục tiêu 2 — Fibo N/V/E]
+⚠️ RỦI RO: [các điểm cần lưu ý]
+📋 TÓM TẮT: [1-2 câu tổng kết]
+
+Ngắn gọn, rõ ràng, chuyên nghiệp. Ưu tiên hệ thống Satoshi QML + Ichimoku Kumo.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content?.map(c => c.text || '').join('') || 'Không có phản hồi.';
+
+    document.getElementById('resultMeta').textContent = `${state.symbol} · ${state.tf} · ${new Date().toLocaleTimeString('vi-VN')}`;
+    resultContent.innerHTML = formatResult(text);
+    resultBox.classList.add('show');
+
+  } catch (err) {
+    resultContent.innerHTML = `<span style="color:var(--red)">Lỗi kết nối API: ${err.message}\n\nHãy đảm bảo file HTML đang chạy trong môi trường Claude.ai có quyền truy cập API.</span>`;
+    resultBox.classList.add('show');
+  }
+
+  btn.disabled = false;
+  dots.classList.remove('show');
+}
+
+// ===== AUTO INIT ON LOAD =====
+window.addEventListener('load', function() {
+  setTimeout(autoFillFromLiveData, 400);
+});
+
+function formatResult(text) {
+  return text
+    .replace(/(📊 BIAS D1:.*)/g, '<span class="r-section">$1</span>')
+    .replace(/(🔮 QML STATUS:.*)/g, '<span class="r-section">$1</span>')
+    .replace(/(⏱️ TIMING:.*)/g, '<span class="r-section">$1</span>')
+    .replace(/(🎯 QUYẾT ĐỊNH: LONG.*)/g, '<span class="r-buy" style="font-size:14px;font-weight:700">$1</span>')
+    .replace(/(🎯 QUYẾT ĐỊNH: SHORT.*)/g, '<span class="r-sell" style="font-size:14px;font-weight:700">$1</span>')
+    .replace(/(🎯 QUYẾT ĐỊNH:.*)/g, '<span class="r-warn" style="font-size:14px;font-weight:700">$1</span>')
+    .replace(/(💰 ENTRY:.*)/g, '<span style="color:var(--cyan)">$1</span>')
+    .replace(/(🛡️ SL:.*)/g, '<span style="color:var(--red)">$1</span>')
+    .replace(/(🏁 TP:.*)/g, '<span style="color:var(--green)">$1</span>')
+    .replace(/(⚠️ RỦI RO:.*)/g, '<span class="r-warn">$1</span>')
+    .replace(/(📋 TÓM TẮT:.*)/g, '<span style="color:var(--gold2);font-style:italic">$1</span>');
+}
+</script>
+</body>
+</html>
