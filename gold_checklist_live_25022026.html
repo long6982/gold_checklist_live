@@ -604,6 +604,85 @@
 <body>
 <div class="container">
 
+  <!-- LIVE DATA BANNER -->
+  <div id="liveBanner" style="
+    background:linear-gradient(135deg,#0d1a0d,#0a1a0d);
+    border:1px solid #1a3a1a;
+    border-radius:14px;
+    padding:16px 24px;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    font-family:'DM Sans',sans-serif;
+  ">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div id="liveIndicator" style="width:10px;height:10px;border-radius:50%;background:#666;flex-shrink:0"></div>
+      <div>
+        <div style="font-size:11px;color:#5a6070;letter-spacing:2px;text-transform:uppercase">LIVE DATA — VPS</div>
+        <div id="liveStatus" style="font-size:13px;color:#5a6070">Dang ket noi...</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="font-size:10px;color:#5a6070;text-transform:uppercase;letter-spacing:1px">GIA</div>
+        <div id="livePrice" style="font-size:20px;font-weight:700;color:#d4a843">—</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:10px;color:#5a6070;text-transform:uppercase;letter-spacing:1px">TF</div>
+        <div id="liveTF" style="font-size:16px;font-weight:600;color:#e8dcc8">—</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:10px;color:#5a6070;text-transform:uppercase;letter-spacing:1px">SIGNAL</div>
+        <div id="liveSignal" style="font-size:16px;font-weight:700;color:#5a6070">—</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:10px;color:#5a6070;text-transform:uppercase;letter-spacing:1px">QUYET DINH</div>
+        <div id="liveDecision" style="font-size:13px;font-weight:600;color:#5a6070">—</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:10px;color:#5a6070;text-transform:uppercase;letter-spacing:1px">CAP NHAT</div>
+        <div id="liveTime" style="font-size:12px;color:#5a6070">—</div>
+      </div>
+    </div>
+    <button onclick="fetchLiveData()" style="
+      background:#1a2a1a;border:1px solid #2a4a2a;color:#22c55e;
+      padding:8px 16px;border-radius:8px;cursor:pointer;
+      font-size:12px;font-family:'DM Sans',sans-serif;
+    ">⚡ CAP NHAT</button>
+  </div>
+
+  <!-- ICHIMOKU SNAPSHOT TABLE -->
+  <div id="liveTable" style="display:none;margin-bottom:20px">
+    <div style="font-size:11px;color:#5a6070;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">ICHIMOKU SNAPSHOT — TRADINGVIEW LIVE</div>
+    <div style="overflow-x:auto">
+      <table id="snapshotTable" style="width:100%;border-collapse:collapse;font-size:13px;font-family:'DM Sans',sans-serif">
+        <thead>
+          <tr style="border-bottom:1px solid #1e2a35">
+            <th style="padding:8px 12px;text-align:left;color:#5a6070;font-weight:500">TF</th>
+            <th style="padding:8px 12px;text-align:right;color:#5a6070;font-weight:500">GIA</th>
+            <th style="padding:8px 12px;text-align:center;color:#5a6070;font-weight:500">vs KUMO</th>
+            <th style="padding:8px 12px;text-align:center;color:#5a6070;font-weight:500">KUMO</th>
+            <th style="padding:8px 12px;text-align:center;color:#5a6070;font-weight:500">TK/KJ</th>
+            <th style="padding:8px 12px;text-align:right;color:#5a6070;font-weight:500">MACD hist</th>
+            <th style="padding:8px 12px;text-align:center;color:#5a6070;font-weight:500">BUY</th>
+            <th style="padding:8px 12px;text-align:center;color:#5a6070;font-weight:500">SELL</th>
+          </tr>
+        </thead>
+        <tbody id="snapshotBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AI ANALYSIS BOX FROM VPS -->
+  <div id="liveAIBox" style="display:none;background:#0d1117;border:1px solid #1e2a35;border-radius:12px;padding:20px;margin-bottom:20px">
+    <div style="font-size:11px;color:#5a6070;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">AI PHAN TICH MOI NHAT — TU VPS</div>
+    <div id="liveAIContent" style="font-size:13px;color:#e8dcc8;line-height:1.8;white-space:pre-wrap"></div>
+    <div id="liveAITime" style="font-size:11px;color:#5a6070;margin-top:8px"></div>
+  </div>
+
   <!-- HEADER -->
   <div class="header">
     <div class="header-eyebrow">Satoshi Logic Map System</div>
@@ -618,57 +697,21 @@
     </div>
   </div>
 
-
-  <!-- LIVE DATA BANNER -->
-  <div style="background:linear-gradient(135deg,rgba(212,168,67,.12),rgba(212,168,67,.04));border:1px solid rgba(212,168,67,.35);border-radius:16px;padding:20px 24px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
-    <div style="display:flex;align-items:center;gap:14px">
-      <div style="width:10px;height:10px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;flex-shrink:0"></div>
-      <div>
-        <div style="font-family:'Cinzel',serif;font-size:11px;color:#f0c96a;font-weight:600;letter-spacing:1px">DU LIEU THUC DA LOAD — XAUUSD (5 TF)</div>
-        <div style="font-size:11px;color:#5a6070;margin-top:3px">D1 / H4 / H1 / M15 / M5 &middot; Cap nhat: <strong style="color:#e8dcc8">25/02/2026 09:35 VN</strong></div>
-      </div>
-    </div>
-    <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
-      <div style="text-align:center">
-        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">GIA HIEN TAI</div>
-        <div style="font-size:22px;font-weight:700;font-family:'Cinzel',serif;color:#f0c96a">5,191.79</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">D1 TREND</div>
-        <div style="font-size:15px;font-weight:700;color:#22c55e">BULL &#x2191;</div>
-        <div style="font-size:9px;color:#5a6070">Tren Kumo D1</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">KEY LEVEL</div>
-        <div style="font-size:15px;font-weight:700;color:#fb923c">5,191.84</div>
-        <div style="font-size:9px;color:#5a6070">Dinh Kumo H1 &#x26A0;</div>
-      </div>
-      <div style="text-align:center">
-        <div style="font-size:9px;color:#5a6070;letter-spacing:1.5px;font-family:'Cinzel',serif">H4 MACD</div>
-        <div style="font-size:15px;font-weight:700;color:#fbbf24">SHRINK</div>
-        <div style="font-size:9px;color:#5a6070">Pullback ket thuc</div>
-      </div>
-      <button onclick="autoFillFromLiveData()" style="background:linear-gradient(135deg,rgba(212,168,67,.25),rgba(212,168,67,.1));border:1px solid rgba(212,168,67,.5);color:#f0c96a;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;padding:10px 22px;border-radius:10px;cursor:pointer;transition:all .2s">
-        &#x26A1; TU DONG PHAN TICH
-      </button>
-    </div>
-  </div>
-
   <!-- SCORE DASHBOARD -->
   <div class="sec-title">Live Score Dashboard</div>
   <div class="score-dash" id="scoreDash">
     <div class="score-item">
-      <div class="s-label">D1 Trend · <span style="color:#f0c96a;font-size:9px">5191.30</span></div>
+      <div class="s-label">D1 Trend</div>
       <div class="s-val" id="sc-d1" style="color:var(--muted)">—</div>
       <div class="s-sub" id="sc-d1-lbl">Chưa check</div>
     </div>
     <div class="score-item">
-      <div class="s-label">H4 Bias · <span style="color:#f0c96a;font-size:9px">5191.17</span></div>
+      <div class="s-label">H4 Bias</div>
       <div class="s-val" id="sc-h4" style="color:var(--muted)">—</div>
       <div class="s-sub" id="sc-h4-lbl">Chưa check</div>
     </div>
     <div class="score-item">
-      <div class="s-label">H1 Setup · <span style="color:#fb923c;font-size:9px">INSIDE KUMO</span></div>
+      <div class="s-label">H1 Setup</div>
       <div class="s-val" id="sc-h1" style="color:var(--muted)">—</div>
       <div class="s-sub" id="sc-h1-lbl">Chưa check</div>
     </div>
@@ -745,79 +788,7 @@
 
   <hr class="divider">
 
-
-  <!-- LIVE DATA TABLE -->
-  <div style="background:#0d1117;border:1px solid #1e2a35;border-radius:14px;padding:20px 24px;margin-bottom:28px;overflow-x:auto">
-    <div style="font-family:'Cinzel',serif;font-size:10px;color:#d4a843;letter-spacing:3px;margin-bottom:16px">SNAPSHOT DU LIEU THUC — 25/02/2026 09:35</div>
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
-      <thead>
-        <tr style="border-bottom:1px solid #1e2a35">
-          <th style="padding:8px 12px;text-align:left;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">TF</th>
-          <th style="padding:8px 12px;text-align:right;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">CLOSE</th>
-          <th style="padding:8px 12px;text-align:center;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">vs KUMO</th>
-          <th style="padding:8px 12px;text-align:center;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">KUMO</th>
-          <th style="padding:8px 12px;text-align:left;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">KIJUN</th>
-          <th style="padding:8px 12px;text-align:right;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">MACD HIST</th>
-          <th style="padding:8px 12px;text-align:center;color:#5a6070;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px">SIGNAL</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
-          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#bf80ff">D1</td>
-          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,191.30</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">TREN MAY</span></td>
-          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
-          <td style="padding:9px 12px;color:#22c55e;font-size:11px">TK&gt;KJ &#x2713;</td>
-          <td style="padding:9px 12px;text-align:right;color:#22c55e;font-weight:600">+9.40 &#x2191;</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 8px;border-radius:4px;font-size:10px">BULL STRONG</span></td>
-        </tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
-          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#38bdf8">H4</td>
-          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,191.17</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">TREN MAY</span></td>
-          <td style="padding:9px 12px;text-align:center;color:#f43f5e;font-size:11px">&#x25CF; DO</td>
-          <td style="padding:9px 12px;color:#22c55e;font-size:11px">TK&gt;KJ &#x2713;</td>
-          <td style="padding:9px 12px;text-align:right;color:#fbbf24;font-weight:600">-5.66 &#x2197;</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px">PULLBACK END</span></td>
-        </tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,.04);background:rgba(251,146,60,.04)">
-          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#22d3ee">H1</td>
-          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,190.74</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,146,60,.15);color:#fb923c;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">&#x26A0; TRONG MAY</span></td>
-          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
-          <td style="padding:9px 12px;color:#22c55e;font-size:11px">TK&gt;KJ &#x2713;</td>
-          <td style="padding:9px 12px;text-align:right;color:#fbbf24;font-weight:600">+3.63 &#x2193;</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px">WAIT BREAKOUT</span></td>
-        </tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,.04)">
-          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#d4a843">M15</td>
-          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,190.80</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">TREN MAY</span></td>
-          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
-          <td style="padding:9px 12px;color:#f43f5e;font-size:11px">TK&lt;KJ &#x2717;</td>
-          <td style="padding:9px 12px;text-align:right;color:#fbbf24;font-weight:600">-1.26 &#x2197;</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px">BEAR SHRINK</span></td>
-        </tr>
-        <tr>
-          <td style="padding:9px 12px;font-family:'Cinzel',serif;font-weight:700;color:#22c55e">M5</td>
-          <td style="padding:9px 12px;text-align:right;color:#e8dcc8;font-weight:600">5,191.79</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(251,146,60,.15);color:#fb923c;padding:2px 10px;border-radius:20px;font-size:10px;font-weight:700">&#x26A0; TRONG MAY</span></td>
-          <td style="padding:9px 12px;text-align:center;color:#22c55e;font-size:11px">&#x25CF; XANH</td>
-          <td style="padding:9px 12px;color:#22c55e;font-size:11px">Close&gt;KJ &#x2713;</td>
-          <td style="padding:9px 12px;text-align:right;color:#22c55e;font-weight:600">+0.40 &#x2191;</td>
-          <td style="padding:9px 12px;text-align:center"><span style="background:rgba(34,197,94,.15);color:#22c55e;padding:2px 8px;border-radius:4px;font-size:10px">BULL FLIP</span></td>
-        </tr>
-      </tbody>
-    </table>
-    <div style="margin-top:14px;padding:10px 14px;background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:8px;font-size:12px;color:#fb923c;line-height:1.6">
-      <strong>&#x26A0; DIEM QUYET DINH:</strong> Gia dang test chinh xac dinh Kumo H1 = <strong>5,191.84</strong>. 
-      Dong cua H1 TREN 5,192 = BUY SIGNAL. Dong cua H1 DUOI 5,175 = SELL SHORT.
-      Hien tai CHUA VAO LENH — cho nen H1 tiep theo.
-    </div>
-  </div>
-
   <!-- CHECKLIST CARDS -->
-
   <div class="sec-title">Checklist Phân Tích — Click để tick</div>
   <div class="cl-grid">
 
@@ -1198,40 +1169,6 @@
 </div><!-- container -->
 
 <script>
-// ===== LIVE DATA FROM CSV (Auto-injected 25/02/2026 09:35 VN) =====
-const LIVE = {
-  D1:  { time:'2026-02-24 22:00', close:5191.30, open:5135.50, high:5210.68, low:5128.29,
-          tk:5046.30, kj:5002.30, ssa:4625.40, ssb:4433.49,
-          kumo_top:4625.40, kumo_bot:4433.49, kumo_bull:true, vs_kumo:'above', kumo_w:3.7,
-          tk_above_kj:true, close_above_kj:true,
-          macd:101.58, sig:92.18, hist:9.40, hist_p:4.01, macd_bull:true, macd_exp:true,
-          t5:true, t20:false },
-  H4:  { time:'2026-02-25 06:00', close:5191.17, open:5201.72, high:5201.73, low:5176.64,
-          tk:5171.62, kj:5106.73, ssa:4938.56, ssb:4980.97,
-          kumo_top:4980.97, kumo_bot:4938.56, kumo_bull:false, vs_kumo:'above', kumo_w:0.8,
-          tk_above_kj:true, close_above_kj:true,
-          macd:44.15, sig:49.81, hist:-5.66, hist_p:-6.68, macd_bull:false, macd_exp:false,
-          t5:true, t20:true },
-  H1:  { time:'2026-02-25 09:00', close:5190.74, open:5185.47, high:5193.82, low:5176.64,
-          tk:5177.43, kj:5151.95, ssa:5191.84, ssb:5115.84,
-          kumo_top:5191.84, kumo_bot:5115.84, kumo_bull:true, vs_kumo:'inside', kumo_w:1.5,
-          tk_above_kj:true, close_above_kj:true,
-          macd:7.35, sig:3.72, hist:3.63, hist_p:4.50, macd_bull:true, macd_exp:false,
-          t5:false, t20:true },
-  M15: { time:'2026-02-25 09:30', close:5190.80, open:5186.76, high:5193.82, low:5185.86,
-          tk:5186.95, kj:5191.25, ssa:5170.61, ssb:5143.53,
-          kumo_top:5170.61, kumo_bot:5143.53, kumo_bull:true, vs_kumo:'above', kumo_w:0.5,
-          tk_above_kj:false, close_above_kj:false,
-          macd:2.51, sig:3.77, hist:-1.26, hist_p:-1.71, macd_bull:false, macd_exp:false,
-          t5:false, t20:true },
-  M5:  { time:'2026-02-25 09:35', close:5191.79, open:5189.47, high:5193.82, low:5189.26,
-          tk:5185.23, kj:5186.95, ssa:5192.58, ssb:5191.25,
-          kumo_top:5192.58, kumo_bot:5191.25, kumo_bull:true, vs_kumo:'inside', kumo_w:0.03,
-          tk_above_kj:false, close_above_kj:true,
-          macd:-0.44, sig:-0.84, hist:0.40, hist_p:-0.11, macd_bull:true, macd_exp:true,
-          t5:true, t20:true }
-};
-
 // ===== STATE =====
 const state = {
   checks: { d1:0, h4:0, h1:0, m15:0, m5:0, avoid:0 },
@@ -1319,32 +1256,6 @@ function resetAll() {
   ['d1','h4','h1','m15','m5','avoid'].forEach(c => {
     state.checks[c] = 0;
     updateCard(c);
-  });
-  updateScores();
-}
-
-// ===== AUTO-FILL FROM LIVE DATA =====
-function autoFillFromLiveData() {
-  const d = LIVE;
-  const d1Items  = [d.D1.kumo_bull, d.D1.vs_kumo==='above', d.D1.close_above_kj, d.D1.t20, d.D1.kumo_w<8, d.D1.ssa>d.D1.ssb];
-  const h4Items  = [true, d.H4.macd_bull||!d.H4.macd_exp, !d.H4.macd_exp, !d.H4.macd_bull&&!d.H4.macd_exp, d.H4.vs_kumo==='above', d.H4.hist>d.H4.hist_p];
-  const h1Items  = [d.H1.macd_bull, d.H1.hist>0, d.H1.t20, d.H1.close_above_kj, d.H1.close_above_kj, d.H1.macd>d.H1.sig];
-  const m15Items = [d.M15.vs_kumo==='above', d.M15.hist>d.M15.hist_p, false, d.M15.t20, d.M15.vs_kumo!=='below', false];
-  const m5Items  = [false, false, d.M5.macd_exp&&d.M5.macd_bull, false, d.M5.t20, false];
-  const avoidItems = [false, d.M5.kumo_w<0.05, d.H1.vs_kumo==='inside', false, false, false];
-
-  document.querySelectorAll('.cl-item').forEach(el => el.classList.remove('checked'));
-  [
-    {items:d1Items,  card:'d1'},
-    {items:h4Items,  card:'h4'},
-    {items:h1Items,  card:'h1'},
-    {items:m15Items, card:'m15'},
-    {items:m5Items,  card:'m5'},
-    {items:avoidItems,card:'avoid'},
-  ].forEach(({items, card}) => {
-    const els = document.querySelectorAll(`[onclick="tick(this,'${card}')"]`);
-    items.forEach((should, i) => { if(should && els[i]) els[i].classList.add('checked'); });
-    updateCard(card);
   });
   updateScores();
 }
@@ -1478,9 +1389,162 @@ Ngắn gọn, rõ ràng, chuyên nghiệp. Ưu tiên hệ thống Satoshi QML + 
   dots.classList.remove('show');
 }
 
-// ===== AUTO INIT ON LOAD =====
-window.addEventListener('load', function() {
-  setTimeout(autoFillFromLiveData, 400);
+// ============================================================
+// LIVE DATA FROM VPS
+// ============================================================
+const VPS_URL = "http://103.77.174.26/latest";
+let liveRefreshTimer = null;
+
+async function fetchLiveData() {
+  const indicator = document.getElementById("liveIndicator");
+  const status    = document.getElementById("liveStatus");
+
+  try {
+    indicator.style.background = "#f59e0b";
+    status.textContent = "Dang tai...";
+
+    const resp = await fetch(VPS_URL, { cache: "no-cache" });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const data = await resp.json();
+
+    if (data.error) {
+      indicator.style.background = "#f43f5e";
+      status.textContent = "Chua co data — cho TradingView gui alert";
+      return;
+    }
+
+    // Update banner
+    indicator.style.background = "#22c55e";
+    indicator.style.boxShadow  = "0 0 8px #22c55e";
+    status.textContent = "Ket noi thanh cong";
+
+    const price = data.last_price || 0;
+    const sig   = data.last_signal || "NEUTRAL";
+    const dec   = data.last_decision || "—";
+    const upd   = data.last_update || "—";
+    const tf    = data.last_tf || "—";
+
+    document.getElementById("livePrice").textContent    = price ? price.toFixed(2) : "—";
+    document.getElementById("liveTF").textContent       = tf;
+    document.getElementById("liveTime").textContent     = upd;
+
+    const sigEl = document.getElementById("liveSignal");
+    sigEl.textContent = sig;
+    sigEl.style.color = sig === "BUY" ? "#22c55e" : sig === "SELL" ? "#f43f5e" : "#f59e0b";
+
+    const decEl = document.getElementById("liveDecision");
+    decEl.textContent = dec;
+    decEl.style.color = dec.includes("VAO") ? "#22c55e" : dec.includes("KHONG") ? "#f43f5e" : "#f59e0b";
+
+    // Build snapshot table
+    const tfOrder = ["D1","H4","H1","M15","M5","1","5","15","60","240"];
+    const tfKeys  = Object.keys(data).filter(k => tfOrder.includes(k) || /^\d+$/.test(k) || ["D1","H4","H1","M15","M5"].includes(k));
+
+    if (tfKeys.length > 0) {
+      document.getElementById("liveTable").style.display = "block";
+      const tbody = document.getElementById("snapshotBody");
+      tbody.innerHTML = "";
+
+      const tfLabels = {"1":"M1","5":"M5","15":"M15","60":"H1","240":"H4","1D":"D1","D":"D1"};
+
+      tfKeys.sort((a,b) => {
+        const order = ["D1","240","60","15","5","1"];
+        return (order.indexOf(a)||99) - (order.indexOf(b)||99);
+      }).forEach(key => {
+        const d = data[key];
+        if (!d || !d.close) return;
+
+        const vs      = d.vs_kumo || "?";
+        const kumo    = d.kumo || "?";
+        const hist    = d.macd_hist || 0;
+        const scoreB  = d.checklist ? d.checklist.score_buy  : "—";
+        const scoreS  = d.checklist ? d.checklist.score_sell : "—";
+        const label   = tfLabels[key] || key;
+
+        const vsColor = vs === "above" ? "#22c55e" : vs === "below" ? "#f43f5e" : "#f59e0b";
+        const vsText  = vs === "above" ? "TREN MAY" : vs === "below" ? "DUOI MAY" : "TRONG MAY";
+        const kumoColor = kumo === "bull" ? "#22c55e" : "#f43f5e";
+        const histColor = hist > 0 ? "#22c55e" : "#f43f5e";
+
+        // TK vs KJ
+        const tkKj = d.tenkan && d.kijun
+          ? (d.tenkan > d.kijun ? "TK>KJ" : "TK<KJ")
+          : "—";
+        const tkColor = d.tenkan > d.kijun ? "#22c55e" : "#f43f5e";
+
+        const row = document.createElement("tr");
+        row.style.borderBottom = "1px solid #1e2a35";
+        row.innerHTML = `
+          <td style="padding:8px 12px;color:#d4a843;font-weight:600">${label}</td>
+          <td style="padding:8px 12px;text-align:right;color:#e8dcc8;font-weight:600">${d.close.toFixed(2)}</td>
+          <td style="padding:8px 12px;text-align:center;color:${vsColor};font-weight:600">${vsText}</td>
+          <td style="padding:8px 12px;text-align:center;color:${kumoColor}">${kumo.toUpperCase()}</td>
+          <td style="padding:8px 12px;text-align:center;color:${tkColor};font-size:12px">${tkKj}</td>
+          <td style="padding:8px 12px;text-align:right;color:${histColor}">${hist.toFixed(4)}</td>
+          <td style="padding:8px 12px;text-align:center;color:#22c55e;font-weight:600">${scoreB}/6</td>
+          <td style="padding:8px 12px;text-align:center;color:#f43f5e;font-weight:600">${scoreS}/6</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Show latest AI analysis
+    const lastTFData = data[data.last_tf];
+    if (lastTFData && lastTFData.ai) {
+      document.getElementById("liveAIBox").style.display = "block";
+      document.getElementById("liveAIContent").textContent = lastTFData.ai;
+      document.getElementById("liveAITime").textContent =
+        "Cap nhat luc: " + (lastTFData.updated || upd) + " | TF: " + (data.last_tf || "?");
+    }
+
+    // Auto-fill checklist nếu có data H1
+    if (data["60"] || data["H1"]) {
+      const h1d = data["60"] || data["H1"];
+      autoFillFromLive(data, h1d);
+    }
+
+  } catch(e) {
+    indicator.style.background = "#f43f5e";
+    status.textContent = "Loi ket noi VPS: " + e.message;
+    console.error("Live fetch error:", e);
+  }
+}
+
+function autoFillFromLive(allData, h1d) {
+  // Tu dong tick checklist dua tren live data
+  const d1d  = allData["D1"] || allData["1D"] || {};
+  const h4d  = allData["240"] || allData["H4"] || {};
+  const m15d = allData["15"]  || allData["M15"] || {};
+  const m5d  = allData["5"]   || allData["M5"]  || {};
+
+  // Helper: find and check item by index
+  function setCheck(id, val) {
+    const el = document.querySelector('[data-id="' + id + '"]');
+    if (!el) return;
+    if (val && !el.classList.contains("checked")) el.classList.add("checked");
+    if (!val && el.classList.contains("checked"))  el.classList.remove("checked");
+  }
+
+  // D1 checks
+  if (d1d.kumo)    setCheck("d1-1", d1d.kumo === "bull");
+  if (d1d.vs_kumo) setCheck("d1-2", d1d.vs_kumo === "above");
+
+  // H1 checks
+  if (h1d.vs_kumo) setCheck("h1-avoid", h1d.vs_kumo === "inside");
+
+  // Update scores
+  if (typeof updateScores === "function") updateScores();
+}
+
+// Auto fetch every 30 seconds
+function startLiveRefresh() {
+  fetchLiveData();
+  liveRefreshTimer = setInterval(fetchLiveData, 30000);
+}
+
+// Start on page load
+window.addEventListener("load", function() {
+  setTimeout(startLiveRefresh, 500);
 });
 
 function formatResult(text) {
